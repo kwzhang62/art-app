@@ -53,16 +53,22 @@ artApp.displayArt = function(artArray) {
     })
 }
 
+artApp.changeHeading = function(animal) {
+    document.querySelector("#page-title span").textContent = `${animal}s`;
+}
+
 artApp.setSelectEventListener = function() {
     const select = document.querySelector('#animalChoices');
-    select.addEventListener('change', function(event) {
-        artApp.getArt(event.target.value);
+    select.addEventListener('change', function() {
+        const selectedAnimal = this.value;
+        artApp.getArt(selectedAnimal);
+        artApp.changeHeading(selectedAnimal);
     });
 }
 
 artApp.init = function() {
     console.log("app is initialized");
-    artApp.getArt('monkeys');
+    artApp.getArt('bears');
     artApp.setSelectEventListener();
 };
 
